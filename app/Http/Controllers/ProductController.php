@@ -20,4 +20,8 @@ class ProductController extends Controller
             'product' => $product
         ]);
     }
+
+    public function create() {
+        return view('products.create');
+    }
 }
