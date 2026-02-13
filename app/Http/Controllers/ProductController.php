@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ProductController extends Controller
 {
     //
     public function index() {
         return view('products.index', [
-            'products' => Product::all()
+            'products' => Product::latest()->get()
         ]);
     }
 
@@ -41,5 +42,18 @@ class ProductController extends Controller
         'products' => $products,
         'search' => $term
     ]);
+    }
+
+    public function store(Request $request) {
+        $formFields = $request->validate([
+            "name"=>'required',
+            "slug"=>'required',
+            "description"=>'required',
+            "price"=>'required',
+            "stock"=>'required',
+            "image"=>'required',
+        ]);
+        Product::create($formFields);
+        return redirect("/")->with("message", "product added succsessfuly");
     }
 }

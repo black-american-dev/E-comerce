@@ -1,7 +1,7 @@
-@if(request('search') && isset($searchResults))
+@if(request('search') && isset($products))
 <div class="border mt-2 p-2 bg-white">
-    @if($searchResults->count() > 0)
-        @foreach($searchResults as $product)
+    @if($products->count() > 0)
+        @foreach($products as $product)
             <div class="p-1 border-b">
                 <a href="/product/{{ $product->id }}">
                     {{ $product->name }}

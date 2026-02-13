@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $table = "products";
+    protected $fillable = ["name","slug","description","price","stock","image"];
 
     public function scopeSearch ($query ,$term ) {
         return $query->where("name", "like", "%{$term}%")

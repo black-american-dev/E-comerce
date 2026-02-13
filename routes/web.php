@@ -10,3 +10,5 @@ Route::get('/product/{product}', [ProductController::class, 'show']);
 Route::get('/create', [ProductController::class, 'create']);
 
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
+
+Route::post('/products', [ProductController::class, 'store']);
